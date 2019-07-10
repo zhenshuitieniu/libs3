@@ -2486,7 +2486,7 @@ static void put_object(int argc, char **argv, int optindex,
         }
 
         do {
-            S3_initiate_multipart(&bucketContext, key,0, &handler,0, timeoutMsG, &manager);
+            S3_initiate_multipart(&bucketContext, key, &putProperties, &handler,0, timeoutMsG, &manager);
         } while (S3_status_is_retryable(statusG) && should_retry());
 
         if (manager.upload_id == 0 || statusG != S3StatusOK) {
