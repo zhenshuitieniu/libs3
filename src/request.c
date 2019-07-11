@@ -1436,6 +1436,7 @@ static void request_release(Request *request)
     // request, to maximize our chances of re-using a TCP connection before it
     // times out
     else {
+        curl_easy_cleanup(request->curl);
         requestStackG[requestStackCountG++] = request;
         pthread_mutex_unlock(&requestStackMutexG);
     }
